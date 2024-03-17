@@ -16,7 +16,7 @@ class Customer:
     # Check if value is not a string
     def first_name(self, value):
         if not isinstance(value, str):
-            raise ValueError("First name must be a string")
+            raise ValueError("First name must be of type string")
           # Check if length of value is not between 1 and 25 characters
         if not 1 <= len(value) <= 25:
             raise ValueError("First name must be between 1 and 25 characters")
@@ -30,19 +30,20 @@ class Customer:
     @last_name.setter
     def last_name(self, value):
         if not isinstance(value, str):
-            raise ValueError("Last name must be a string")
+            raise ValueError("Last name must be of type string")
         if not 1 <= len(value) <= 25:
             raise ValueError("Last name must be between 1 and 25 characters")
         self._last_name = value
 
-
+# classes and instances
 class Restaurant:
+  # classes and instance methods
     def __init__(self, name):
         self._name = None
         # Call the setter method for name attribute to set its value
         self.name = name
         # Initialize a private attribute _reviews as an empty list
-
+# Variable Scope: Defines an empty list to store reviews
         self._reviews = []
 # Define a property getter method for name
     @property
@@ -52,24 +53,27 @@ class Restaurant:
     @name.setter
     def name(self, value):
         if not isinstance(value, str):
-            raise ValueError("Name must be a string")
+            raise ValueError("Name must be of type string")
         if len(value) < 1:
             raise ValueError("Name must be at least 1 character")
         self._name = value
 # Define a method to add a review to the restaurant
     def add_review(self, review):
+      # Object Relationships: Adds a review to the list of reviews associated with the restaurant
        # Check if review is not an instance of Review class
         if not isinstance(review, Review):
-            raise ValueError("Review must be an instance of Review")
+            raise ValueError("Review must be an instance of Class Review")
          # Add the review to the list of reviews
         self._reviews.append(review)
 # Define a method to get all reviews for the restaurant
     def reviews(self):
+       # Object Relationships: Returns a list of all reviews for the restaurant
         return self._reviews
 
 # Define the Review class
 class Review:
     def __init__(self, customer, restaurant, rating):
+        # Object Relationships: Initializes a Review instance with a customer, restaurant, and rating
         self.customer = customer
         self.restaurant = restaurant
         self.rating = rating
@@ -84,24 +88,23 @@ class Review:
     def rating(self, value):
        # Check if value is not an integer
         if not isinstance(value, int):
-            raise ValueError("Rating must be an integer")
+            raise ValueError("Rating must be of type integer")
           # Check if value is not between 1 and 5
         if not 1 <= value <= 5:
             raise ValueError("Rating must be between 1 and 5")
         self._rating = value
 
 
-# Test the implementation
-if __name__ == "__main__":
-    # Test Customer
-    customer = Customer("Winnie", "Jomo")
-    print(customer.first_name) 
-    print(customer.last_name)  
 
-    # Test Restaurant
-    restaurant = Restaurant("The Best Restaurant")
-    print(restaurant.name)  
+    #  Customer tests
+customer = Customer("Winnie", "Jomo")
+print(customer.first_name) 
+print(customer.last_name)  
 
-    # Test Review
-    review = Review(customer, restaurant, 4)
-    print(review.rating)  
+    # Restaurant  tests
+restaurant = Restaurant("Sarova")
+print(restaurant.name)  
+
+    # Review  tests
+review = Review(customer, restaurant, 3)
+print(review.rating)  
